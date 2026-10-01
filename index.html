@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1st CANARiAS Algebra Fest</title>
+<meta name="description" content="1st CANARiAS Algebra Fest: Where Algebra Meets Geometry, Codes, and Combinatorics.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 185'%3E%3Cpath d='M100 20L15 167H185Z' fill='none' stroke='%231F5673' stroke-width='14'/%3E%3Ccircle cx='100' cy='118' r='49' fill='none' stroke='%23E8B500' stroke-width='14'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F6F7;
+    --ink: #1D2428;
+    --muted: #5B676E;
+    --atlantic: #1F5673;
+    --canary: #E8B500;
+    --rule: #D3DADE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14191C;
+      --ink: #E9EDEF;
+      --muted: #9AA7AE;
+      --atlantic: #7DB3D1;
+      --canary: #F2C200;
+      --rule: #2C363B;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Spectral", Georgia, "Times New Roman", serif;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: clamp(2.6rem, 7vw, 5.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+  }
+  h1 sup {
+    font-size: 0.45em;
+    vertical-align: 0.9em;
+    line-height: 0;
+    margin-left: 0.04em;
+  }
+
+  .subtitle {
+    margin-top: 1.25rem;
+    max-width: 28ch;
+    font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--atlantic);
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 1.75rem;
+    max-width: 34rem;
+    margin-top: 2.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  dt { color: var(--muted); }
+  dd { font-weight: 500; }
+
+  .notice {
+    max-width: 34rem;
+    margin-top: 2.5rem;
+    padding-left: 1.1rem;
+    border-left: 3px solid var(--canary);
+    color: var(--ink);
+  }
+
+  figure { margin: 0; }
+  figure svg {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    margin: 0 auto;
+    overflow: visible;
+  }
+  figcaption {
+    max-width: 24rem;
+    margin: 1.25rem auto 0;
+    font-size: 0.875rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .fano .ln { stroke: var(--ink); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+  .fano .circ { stroke: var(--canary); stroke-width: 3; fill: none; }
+  .fano .pt { fill: var(--atlantic); stroke: var(--paper); stroke-width: 3; }
+
+  /* One drawing moment on load: the seven lines, then the seven points */
+  @media (prefers-reduced-motion: no-preference) {
+    .fano .ln, .fano .circ {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 0.9s cubic-bezier(.6,.1,.3,1) forwards;
+    }
+    .fano .pt {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pop 0.35s ease-out forwards;
+    }
+    .fano .l1 { animation-delay: 0.10s; }
+    .fano .l2 { animation-delay: 0.25s; }
+    .fano .l3 { animation-delay: 0.40s; }
+    .fano .l4 { animation-delay: 0.70s; }
+    .fano .l5 { animation-delay: 0.80s; }
+    .fano .l6 { animation-delay: 0.90s; }
+    .fano .circ { animation-delay: 1.15s; animation-duration: 1.1s; }
+    .fano .pt { animation-delay: calc(1.9s + var(--i) * 0.06s); }
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.3); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 760px) {
+    main { grid-template-columns: 1fr; align-items: start; align-content: start; gap: 2.25rem; }
+    figure { order: -1; }
+    figure svg { max-width: 11rem; margin: 0; }
+    figcaption { display: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>1<sup>st</sup> CANARiAS<br>Algebra Fest</h1>
+    <p class="subtitle">Where Algebra Meets Geometry, Codes, and Combinatorics</p>
+
+    <dl>
+      <dt>Dates</dt>
+      <!-- EDIT: replace with the dates, e.g. "June 14–18, 2027" -->
+      <dd>To be announced</dd>
+
+      <dt>Venue</dt>
+      <!-- EDIT: replace with the venue, e.g. "University of La Laguna, Tenerife, Canary Islands, Spain" -->
+      <dd>Canary Islands, Spain</dd>
+    </dl>
+
+    <p class="notice">This website is under construction. The programme, speakers and registration details will be posted here soon.</p>
+  </section>
+
+  <figure>
+    <svg class="fano" viewBox="5 8 190 172" role="img" aria-labelledby="fano-title">
+      <title id="fano-title">The Fano plane</title>
+      <line class="ln l1" pathLength="1" x1="100" y1="20"  x2="15"    y2="167"/>
+      <line class="ln l2" pathLength="1" x1="15"  y1="167" x2="185"   y2="167"/>
+      <line class="ln l3" pathLength="1" x1="185" y1="167" x2="100"   y2="20"/>
+      <line class="ln l4" pathLength="1" x1="100" y1="20"  x2="100"   y2="167"/>
+      <line class="ln l5" pathLength="1" x1="15"  y1="167" x2="142.5" y2="93.5"/>
+      <line class="ln l6" pathLength="1" x1="185" y1="167" x2="57.5"  y2="93.5"/>
+      <circle class="circ" pathLength="1" cx="100" cy="118" r="49"/>
+      <circle class="pt" style="--i:0" cx="100"   cy="20"   r="6.5"/>
+      <circle class="pt" style="--i:1" cx="15"    cy="167"  r="6.5"/>
+      <circle class="pt" style="--i:2" cx="185"   cy="167"  r="6.5"/>
+      <circle class="pt" style="--i:3" cx="57.5"  cy="93.5" r="6.5"/>
+      <circle class="pt" style="--i:4" cx="142.5" cy="93.5" r="6.5"/>
+      <circle class="pt" style="--i:5" cx="100"   cy="167"  r="6.5"/>
+      <circle class="pt" style="--i:6" cx="100"   cy="118"  r="6.5"/>
+    </svg>
+    <figcaption>The Fano plane: the projective plane over 𝔽<sub>2</sub>, a Steiner triple system, and the geometry behind the Hamming code.</figcaption>
+  </figure>
+</main>
+</body>
+</html>
