@@ -256,6 +256,40 @@
   h3 + .tba { margin-top: 0.3rem; }
   main { padding-bottom: 3rem; }
 
+    /* ---------- Organizers ---------- */
+  .organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 2.5rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .organizer { text-align: center; }
+  .organizer-photo {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+    outline: 1px solid var(--rule);
+    outline-offset: 3px;
+  }
+  .organizer-name {
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .organizer-name a {
+    color: var(--atlantic);
+    text-decoration: none;
+  }
+  .organizer-name a:hover { text-decoration: underline; }
+  .organizer-affiliation {
+    margin-top: 0.2rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
   /* ---------- Smaller screens ---------- */
   @media (max-width: 960px) {
     .menu-toggle { display: inline-flex; }
