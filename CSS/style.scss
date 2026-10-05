@@ -1,4 +1,15 @@
-  /* ---------- Organizers ---------- */
+  /* ---------- Venue and local info ---------- */
+  .info-block p + p,
+  .info-block p + ul,
+  .info-block ul + p { margin-top: 0.9rem; }
+  .section-body p a {
+    color: var(--atlantic);
+    text-underline-offset: 2px;
+  }
+  .organizer-name a { text-decoration: none; }
+  .stars { color: var(--canary); letter-spacing: 0.05em; }
+
+/* ---------- Organizers ---------- */
   .organizers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
