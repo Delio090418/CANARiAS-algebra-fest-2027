@@ -1,3 +1,18 @@
+.organized-by {
+  display: flex;             /* text and logo on the same line */
+  align-items: center;       /* text vertically centered with the logo */
+  justify-content: center;   /* centered on the page; remove to align left */
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.organized-by span {
+  font-weight: 600;
+}
+.organized-by img {
+  max-width: 100%;
+}
+
+
 .sponsor-logos {
   display: flex;
   flex-wrap: wrap;
